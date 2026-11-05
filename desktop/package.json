@@ -1,0 +1,127 @@
+{
+  "name": "tooplay",
+  "version": "0.3.0",
+  "description": "Tooplay - Chromecast(Google TV) 전송과 자막을 지원하는 데스크톱 영상 플레이어",
+  "main": "src/main/main.js",
+  "author": "Tooplay",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "start": "node scripts/prepare-vendor.js && node scripts/prepare-native-tools.js && electron .",
+    "dist": "node scripts/prepare-vendor.js && electron-builder",
+    "dist:mac": "node scripts/prepare-vendor.js && node scripts/package-mac.js --dmg",
+    "dist:win": "node scripts/prepare-vendor.js && node scripts/package-platform.js win",
+    "dist:linux": "node scripts/prepare-vendor.js && node scripts/package-platform.js linux",
+    "dist:dir": "node scripts/prepare-vendor.js && electron-builder --dir",
+    "test": "node --test tests/*.test.js",
+    "test:smoke": "node scripts/smoke-test.js",
+    "test:cast-buffering": "node scripts/check-cast-buffering.js",
+    "pretest": "node scripts/prepare-native-tools.js",
+    "pretest:cast-buffering": "node scripts/prepare-native-tools.js",
+    "pretest:smoke": "node scripts/prepare-native-tools.js",
+    "test:remote-web": "node scripts/remote-web-smoke.js"
+  },
+  "dependencies": {
+    "bonjour-service": "^1.3.0",
+    "castv2-client": "^1.2.0",
+    "ffmpeg-static": "^5.3.0",
+    "ffprobe-static": "^3.1.0",
+    "iconv-lite": "^0.6.3"
+  },
+  "devDependencies": {
+    "electron": "^45.1.0",
+    "electron-builder": "^26.18.0",
+    "hls.js": "^1.5.20"
+  },
+  "build": {
+    "appId": "com.tooplay.cross",
+    "productName": "Tooplay",
+    "copyright": "Tooplay",
+    "directories": {
+      "output": "dist",
+      "buildResources": "assets"
+    },
+    "files": [
+      "src/**/*",
+      "assets/**/*",
+      "package.json",
+      "node_modules/**/*"
+    ],
+    "asar": true,
+    "asarUnpack": [
+      "node_modules/ffmpeg-static/**",
+      "node_modules/ffprobe-static/**"
+    ],
+    "mac": {
+      "target": [
+        {
+          "target": "dmg",
+          "arch": [
+            "arm64",
+            "x64"
+          ]
+        }
+      ],
+      "category": "public.app-category.video",
+      "icon": "assets/icon.icns",
+      "extendInfo": {
+        "NSLocalNetworkUsageDescription": "Chromecast(Google TV) 기기를 찾기 위해 같은 네트워크를 검색합니다.",
+        "NSBonjourServices": [
+          "_googlecast._tcp"
+        ]
+      }
+    },
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "assets/icon.png",
+      "artifactName": "${productName}-Setup-${version}.${ext}"
+    },
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb"
+      ],
+      "category": "AudioVideo",
+      "icon": "assets/icon.png",
+      "artifactName": "${productName}-${version}-${arch}.${ext}",
+      "maintainer": "Tooplay"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
+    },
+    "fileAssociations": [
+      {
+        "ext": [
+          "mp4",
+          "m4v",
+          "mov",
+          "mkv",
+          "avi",
+          "wmv",
+          "flv",
+          "webm",
+          "ts",
+          "m2ts",
+          "mpg",
+          "mpeg",
+          "vob",
+          "ogv",
+          "3gp"
+        ],
+        "name": "Video",
+        "role": "Viewer"
+      }
+    ]
+  }
+}

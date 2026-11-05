@@ -1,0 +1,46 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {};
+	objectVersion = 56;
+	objects = {
+		1EF60CA06B1D0FEB9E0C80AB = { isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CastController.swift"; sourceTree = "<group>"; };
+		EBA143B91811478A0A457C44 = { isa = PBXBuildFile; fileRef = 1EF60CA06B1D0FEB9E0C80AB; };
+		FFE64F22C8012EA329C390A3 = { isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContentView.swift"; sourceTree = "<group>"; };
+		9FF2EA8E94F5AE97E000DA72 = { isa = PBXBuildFile; fileRef = FFE64F22C8012EA329C390A3; };
+		5AE6AB7165118C3A0ECCBEED = { isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalMediaServer.swift"; sourceTree = "<group>"; };
+		92AE9CEB0324BFE900F47397 = { isa = PBXBuildFile; fileRef = 5AE6AB7165118C3A0ECCBEED; };
+		3A315E6ABDD26EEC359A2481 = { isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MediaController.swift"; sourceTree = "<group>"; };
+		11647ED676CFF9BC1414FA43 = { isa = PBXBuildFile; fileRef = 3A315E6ABDD26EEC359A2481; };
+		492B31627B1E144B41ABAE63 = { isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MediaCore.swift"; sourceTree = "<group>"; };
+		7FDDB7D5ED622A470686BCB5 = { isa = PBXBuildFile; fileRef = 492B31627B1E144B41ABAE63; };
+		FD623E7BD42B8B1DA008A50F = { isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RemoteClient.swift"; sourceTree = "<group>"; };
+		CB80882629A54CEEAA091E27 = { isa = PBXBuildFile; fileRef = FD623E7BD42B8B1DA008A50F; };
+		D46CED953BDA269A05E8102C = { isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TooplayApp.swift"; sourceTree = "<group>"; };
+		9B909A40D5BE095026FC7A66 = { isa = PBXBuildFile; fileRef = D46CED953BDA269A05E8102C; };
+		44454AC161E165C8CFC65F6A = { isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VideoPresentation.swift"; sourceTree = "<group>"; };
+		8D1A45C29E1FAF87A52BE442 = { isa = PBXBuildFile; fileRef = 44454AC161E165C8CFC65F6A; };
+		8BF729FFE074CAEE622C0292 = { isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		5522B3B3B2EACC1C8F9BEAAC = { isa = PBXBuildFile; fileRef = 8BF729FFE074CAEE622C0292; };
+		9AC3B5AD93CBC0305C62F78F = { isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A8792157CB4F27FB949C035F = { isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tooplay.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1455444174429298B0F374B3 = { isa = PBXGroup; children = (1EF60CA06B1D0FEB9E0C80AB,FFE64F22C8012EA329C390A3,5AE6AB7165118C3A0ECCBEED,3A315E6ABDD26EEC359A2481,492B31627B1E144B41ABAE63,FD623E7BD42B8B1DA008A50F,D46CED953BDA269A05E8102C,44454AC161E165C8CFC65F6A,9AC3B5AD93CBC0305C62F78F,8BF729FFE074CAEE622C0292); path = Tooplay; sourceTree = "<group>"; };
+		0A3E27B8CA818264D75C8D81 = { isa = PBXGroup; children = (A8792157CB4F27FB949C035F); name = Products; sourceTree = "<group>"; };
+		19F479106CE8C3BA8C106518 = { isa = PBXGroup; children = (1455444174429298B0F374B3,0A3E27B8CA818264D75C8D81); sourceTree = "<group>"; };
+		AB66A1E42BFB0AD7D5E6B8F1 = { isa = XCRemoteSwiftPackageReference; repositoryURL = "https://github.com/googlecast/google-cast-ios-sdk"; requirement = { kind = exactVersion; version = 4.8.6; }; };
+		87ADB533F6B1BE0CCC7B727A = { isa = XCSwiftPackageProductDependency; package = AB66A1E42BFB0AD7D5E6B8F1; productName = GoogleCastDynamic; };
+		490D213F071F0CE7E36A186A = { isa = PBXBuildFile; productRef = 87ADB533F6B1BE0CCC7B727A; };
+		878A52FC5FF6A57D50B7B870 = { isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (EBA143B91811478A0A457C44,9FF2EA8E94F5AE97E000DA72,92AE9CEB0324BFE900F47397,11647ED676CFF9BC1414FA43,7FDDB7D5ED622A470686BCB5,CB80882629A54CEEAA091E27,9B909A40D5BE095026FC7A66,8D1A45C29E1FAF87A52BE442); runOnlyForDeploymentPostprocessing = 0; };
+		E2AA269EB967A8853A258BFA = { isa = PBXFrameworksBuildPhase; buildActionMask = 2147483647; files = (490D213F071F0CE7E36A186A); runOnlyForDeploymentPostprocessing = 0; };
+		41D311A605520FC7B8B9A980 = { isa = PBXResourcesBuildPhase; buildActionMask = 2147483647; files = (5522B3B3B2EACC1C8F9BEAAC); runOnlyForDeploymentPostprocessing = 0; };
+		73EBF6644258C120893E685D = { isa = XCBuildConfiguration; buildSettings = { CLANG_ENABLE_MODULES = "YES"; CLANG_ENABLE_OBJC_ARC = "YES"; SDKROOT = "iphoneos"; IPHONEOS_DEPLOYMENT_TARGET = "16.0"; SWIFT_VERSION = "5.0"; ENABLE_USER_SCRIPT_SANDBOXING = "YES"; DEBUG_INFORMATION_FORMAT = "dwarf"; SWIFT_OPTIMIZATION_LEVEL = "-Onone"; }; name = Debug; };
+		6C7EFF6369083C8E1F2B1994 = { isa = XCBuildConfiguration; buildSettings = { ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon"; PRODUCT_NAME = "Tooplay"; PRODUCT_BUNDLE_IDENTIFIER = "com.tooplay.mobile"; MARKETING_VERSION = "0.3.2"; CURRENT_PROJECT_VERSION = "3"; INFOPLIST_FILE = "Tooplay/Info.plist"; CODE_SIGN_STYLE = "Automatic"; TARGETED_DEVICE_FAMILY = "1,2"; SUPPORTED_PLATFORMS = "iphoneos iphonesimulator"; SUPPORTS_MACCATALYST = "NO"; SWIFT_EMIT_LOC_STRINGS = "YES"; GENERATE_INFOPLIST_FILE = "NO"; LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks"; SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)"; }; name = Debug; };
+		0B0C687DF8B6B8DC790B519C = { isa = XCBuildConfiguration; buildSettings = { CLANG_ENABLE_MODULES = "YES"; CLANG_ENABLE_OBJC_ARC = "YES"; SDKROOT = "iphoneos"; IPHONEOS_DEPLOYMENT_TARGET = "16.0"; SWIFT_VERSION = "5.0"; ENABLE_USER_SCRIPT_SANDBOXING = "YES"; DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym"; SWIFT_OPTIMIZATION_LEVEL = "-O"; }; name = Release; };
+		DD75E2CB1C510A828AC72D96 = { isa = XCBuildConfiguration; buildSettings = { ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon"; PRODUCT_NAME = "Tooplay"; PRODUCT_BUNDLE_IDENTIFIER = "com.tooplay.mobile"; MARKETING_VERSION = "0.3.2"; CURRENT_PROJECT_VERSION = "3"; INFOPLIST_FILE = "Tooplay/Info.plist"; CODE_SIGN_STYLE = "Automatic"; TARGETED_DEVICE_FAMILY = "1,2"; SUPPORTED_PLATFORMS = "iphoneos iphonesimulator"; SUPPORTS_MACCATALYST = "NO"; SWIFT_EMIT_LOC_STRINGS = "YES"; GENERATE_INFOPLIST_FILE = "NO"; LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks"; }; name = Release; };
+		B4E10CAA9C5E22150B71559C = { isa = XCConfigurationList; buildConfigurations = (73EBF6644258C120893E685D,0B0C687DF8B6B8DC790B519C); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
+		4A807E8A027297B0B93701FB = { isa = XCConfigurationList; buildConfigurations = (6C7EFF6369083C8E1F2B1994,DD75E2CB1C510A828AC72D96); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
+		34A04005BCAF206EEC990BD9 = { isa = PBXNativeTarget; buildConfigurationList = 4A807E8A027297B0B93701FB; buildPhases = (878A52FC5FF6A57D50B7B870,E2AA269EB967A8853A258BFA,41D311A605520FC7B8B9A980); buildRules = (); dependencies = (); name = Tooplay; packageProductDependencies = (87ADB533F6B1BE0CCC7B727A); productName = Tooplay; productReference = A8792157CB4F27FB949C035F; productType = "com.apple.product-type.application"; };
+		244210E48437B6556980A702 = { isa = PBXProject; attributes = { BuildIndependentTargetsInParallel = 1; LastUpgradeCheck = 1600; TargetAttributes = { 34A04005BCAF206EEC990BD9 = { CreatedOnToolsVersion = 16.0; }; }; }; buildConfigurationList = B4E10CAA9C5E22150B71559C; compatibilityVersion = "Xcode 14.0"; developmentRegion = ko; hasScannedForEncodings = 0; knownRegions = (ko,en,Base); mainGroup = 19F479106CE8C3BA8C106518; packageReferences = (AB66A1E42BFB0AD7D5E6B8F1); productRefGroup = 0A3E27B8CA818264D75C8D81; projectDirPath = ""; projectRoot = ""; targets = (34A04005BCAF206EEC990BD9); };
+	};
+	rootObject = 244210E48437B6556980A702;
+}

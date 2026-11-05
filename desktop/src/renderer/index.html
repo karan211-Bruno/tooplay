@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; img-src 'self' data:; media-src 'self' http: https: blob:; connect-src 'self' http: https:; style-src 'self' 'unsafe-inline'; script-src 'self'; worker-src 'self' blob:">
+  <title>Tooplay</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <svg class="svg-sprite" aria-hidden="true">
+    <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></symbol>
+    <symbol id="i-pause" viewBox="0 0 24 24"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></symbol>
+    <symbol id="i-volume" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4zM14 3.2v2.1a6.8 6.8 0 0 1 0 13.4v2.1a9 9 0 0 0 0-17.6z"/></symbol>
+    <symbol id="i-mute" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm18.3 3 2.1-2.1-1.4-1.4-2.1 2.1-2.1-2.1-1.4 1.4 2.1 2.1-2.1 2.1 1.4 1.4 2.1-2.1 2.1 2.1 1.4-1.4z"/></symbol>
+    <symbol id="i-captions" viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zM7.5 9.5h-2v5h2v-1h2v1a2 2 0 0 1-2 2h-2a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v1h-2v-1zm9 0h-2v5h2v-1h2v1a2 2 0 0 1-2 2h-2a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v1h-2v-1z"/></symbol>
+    <symbol id="i-cast" viewBox="0 0 24 24"><path d="M1 18v3h3a3 3 0 0 0-3-3zm0-4v2a5 5 0 0 1 5 5h2a7 7 0 0 0-7-7zm0-4v2a9 9 0 0 1 9 9h2A11 11 0 0 0 1 10zm21-7H2a1 1 0 0 0-1 1v4h2V5h18v14h-7v2h7a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1z"/></symbol>
+    <symbol id="i-fullscreen" viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></symbol>
+    <symbol id="i-folder" viewBox="0 0 24 24"><path d="M10 4H2v16h20V6H12l-2-2z"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="m18.3 5.7-6.3 6.3-6.3-6.3-1.4 1.4 6.3 6.3-6.3 6.3 1.4 1.4 6.3-6.3 6.3 6.3 1.4-1.4-6.3-6.3 6.3-6.3z"/></symbol>
+    <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M17.65 6.35A8 8 0 1 0 20 12h-2a6 6 0 1 1-1.76-4.24L13 11h7V4l-2.35 2.35z"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></symbol>
+    <symbol id="i-subtitle-off" viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 14H4V6h16v12zM6 13h6v2H6zm8 0h4v2h-4z"/></symbol>
+  </svg>
+
+  <div id="app" class="app">
+    <header class="topbar">
+      <div class="brand">
+        <span class="logo"><svg><use href="#i-play"/></svg></span>
+        <span class="brand-name">TOOPLAY</span>
+      </div>
+      <div id="fileTitle" class="file-title">영상을 열어 주세요</div>
+      <div class="top-actions">
+        <span id="platformNote" class="platform-note"></span>
+        <button id="remoteBtn" class="button ghost">휴대폰 연결</button>
+        <button id="openBtn" class="button ghost">
+          <svg><use href="#i-folder"/></svg>
+          <span>영상 열기</span>
+        </button>
+      </div>
+    </header>
+
+    <main id="stage" class="stage">
+      <video id="video" playsinline></video>
+      <div id="subtitleLayer" class="subtitle-layer" aria-live="polite"></div>
+
+      <section id="emptyState" class="empty">
+        <div id="dropzone" class="dropzone">
+          <div class="drop-icon">
+            <svg><use href="#i-folder"/></svg>
+          </div>
+          <h1>영상을 끌어다 놓으세요</h1>
+          <p class="formats">MP4 · MKV · AVI · MOV · WebM · TS</p>
+          <button id="emptyOpen" class="button primary">영상 열기</button>
+          <p class="hint">같은 이름의 SRT · VTT · ASS 자막은 자동으로 불러옵니다</p>
+        </div>
+      </section>
+
+      <section id="preparing" class="overlay hidden">
+        <div class="spinner"></div>
+        <h2 id="prepTitle">재생을 준비하는 중</h2>
+        <p id="prepMessage" class="muted"></p>
+        <div class="progress"><div id="prepBar" class="progress-bar"></div></div>
+        <button id="cancelPrep" class="button ghost">취소</button>
+      </section>
+
+      <section id="errorState" class="overlay hidden">
+        <div class="error-icon">!</div>
+        <h2>재생할 수 없습니다</h2>
+        <pre id="errorMessage"></pre>
+        <div class="row">
+          <button id="retryBtn" class="button primary">다시 시도</button>
+          <button id="errorOpen" class="button ghost">다른 영상</button>
+        </div>
+      </section>
+
+      <div id="castBadge" class="cast-badge hidden">
+        <span class="pulse"></span>
+        <span id="castBadgeText">TV로 전송 중</span>
+        <button id="castBadgeStop" class="link-button">중지</button>
+      </div>
+
+      <div id="toast" class="toast hidden"></div>
+
+      <footer id="controls" class="controls hidden">
+        <button id="playBtn" class="icon-button" title="재생 (Space)">
+          <svg><use href="#i-play"/></svg>
+        </button>
+        <span id="currentTime" class="time">0:00</span>
+        <input id="seek" class="range seek" type="range" min="0" max="1" step="0.01" value="0">
+        <span id="duration" class="time">0:00</span>
+        <button id="muteBtn" class="icon-button" title="음소거 (M)">
+          <svg><use href="#i-volume"/></svg>
+        </button>
+        <input id="volume" class="range volume" type="range" min="0" max="1" step="0.01" value="1">
+        <button id="subtitleBtn" class="icon-button" title="자막">
+          <svg><use href="#i-captions"/></svg>
+        </button>
+        <button id="castBtn" class="icon-button" title="TV로 전송">
+          <svg><use href="#i-cast"/></svg>
+        </button>
+        <button id="fullscreenBtn" class="icon-button" title="전체 화면 (F)">
+          <svg><use href="#i-fullscreen"/></svg>
+        </button>
+      </footer>
+
+      <div id="subtitleMenu" class="popover hidden" role="menu"></div>
+      <div id="castMenu" class="popover hidden" role="menu"></div>
+    </main>
+  </div>
+
+  <dialog id="remoteDialog" class="remote-dialog">
+    <div class="row"><h2>휴대폰으로 조작</h2><button id="remoteClose" class="button ghost">닫기</button></div>
+    <p>휴대폰과 컴퓨터를 같은 Wi-Fi에 연결하세요.</p>
+    <p>모바일 Tooplay의 ‘컴퓨터 연결’에 아래 주소를 입력하세요. 휴대폰 브라우저에서도 열 수 있습니다.</p>
+    <label>컴퓨터 주소<input id="remoteURL" readonly aria-label="컴퓨터 연결 주소"></label>
+    <div id="remoteCode" class="remote-code"></div>
+    <p id="remoteStatus" class="muted" aria-live="polite"></p>
+    <p>컴퓨터에서 열어 둔 영상의 재생·자막·TV 전송을 조작합니다.</p>
+    <div class="row"><button id="remoteRenew" class="button primary">새 연결 코드</button><button id="remoteDisable" class="button ghost">모든 연결 끄기</button></div>
+  </dialog>
+
+  <script src="vendor/hls.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
